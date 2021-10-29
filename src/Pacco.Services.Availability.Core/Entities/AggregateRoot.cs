@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Pacco.Services.Availability.Core.Events;
 
 namespace Pacco.Services.Availability.Core.Entities
@@ -12,7 +13,14 @@ namespace Pacco.Services.Availability.Core.Entities
 
         protected void AddEvent(IDomainEvent @event)
         {
+            if(!_events.Any())
+            {
+                Version++;
+            }
 
+            _events.Add(@event);
         }
+
+        public void ClearEvent() => _events.Clear();
     }
 }
