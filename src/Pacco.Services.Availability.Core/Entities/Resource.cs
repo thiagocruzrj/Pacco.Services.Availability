@@ -24,6 +24,7 @@ namespace Pacco.Services.Availability.Core.Entities
 
         public Resource(AggregateId id, IEnumerable<string> tags, IEnumerable<Reservation> reservations = null, int version = 0)
         {
+            ValidateTags(tags);
             Id = id;
             Tags = tags;
             Reservations = reservations;
