@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Pacco.Services.Availability.Core.Exceptions;
 using Pacco.Services.Availability.Core.ValueObjects;
 
 namespace Pacco.Services.Availability.Core.Entities
