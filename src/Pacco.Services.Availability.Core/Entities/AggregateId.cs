@@ -23,16 +23,14 @@ namespace Pacco.Services.Availability.Core.Entities
         public bool Equals([AllowNull] AggregateId other)
         {
             if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Value.Equals(other.Value);
+            return (ReferenceEquals(this, other)) || Value.Equals(other.Value);
         }
 
         public override bool Equals([AllowNull] object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if(obj.GetType() != this.GetType()) return false;
-            return Value.Equals((AggregateId) obj);
+            return(obj.GetType() != this.GetType()) || Value.Equals((AggregateId) obj);
         }
 
         public override int GetHashCode() => Value.GetHashCode();
