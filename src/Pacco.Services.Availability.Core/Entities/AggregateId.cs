@@ -34,5 +34,12 @@ namespace Pacco.Services.Availability.Core.Entities
         }
 
         public override int GetHashCode() => Value.GetHashCode();
+
+        public static implicit operator Guid(AggregateId id) => id.Value;
+
+        public static implicit operator AggregateId(Guid id) => new AggregateId(id);
+        
+
+        public override string ToString() => Value.ToString();
     }
 }
