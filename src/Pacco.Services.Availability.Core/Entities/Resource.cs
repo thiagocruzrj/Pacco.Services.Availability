@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Pacco.Services.Availability.Core.Events;
 using Pacco.Services.Availability.Core.Exceptions;
 using Pacco.Services.Availability.Core.ValueObjects;
 
@@ -42,6 +43,14 @@ namespace Pacco.Services.Availability.Core.Entities
             {
                 throw new InvalidResourceTagsException();
             }
+        }
+
+        public static Resource Create(AggregateId id, IEnumerable<string> tags, IEnumerable<Reservation> reservations = null)
+        {
+            var resource = new Resource(id, tags, reservations);
+            resource.AddEvent(new ResourceCreated(resource));
+
+            return resource;
         }
     }
 }
