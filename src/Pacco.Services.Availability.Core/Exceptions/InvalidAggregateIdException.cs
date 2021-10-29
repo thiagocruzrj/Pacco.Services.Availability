@@ -4,6 +4,10 @@ namespace Pacco.Services.Availability.Core.Exceptions
 {
     public class InvalidAggregateIdException : DomainException
     {
-        protected InvalidAggregateIdException(Guid id ) : base($"Invalid aggregate ID: '{id}.") { }
+        public Guid Id { get; set; }
+        public InvalidAggregateIdException(Guid id ) : base($"Invalid aggregate ID: '{id}.") 
+        {
+            Id = id;
+        }
     }
 }
