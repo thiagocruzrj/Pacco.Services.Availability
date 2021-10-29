@@ -15,7 +15,7 @@ namespace Pacco.Services.Availability.Core.Entities
         {
             if(value == Guid.Empty)
             {
-                throw new ArgumentException();
+                throw new InvalidAggregateIdException(value);
             }
         }
     }
