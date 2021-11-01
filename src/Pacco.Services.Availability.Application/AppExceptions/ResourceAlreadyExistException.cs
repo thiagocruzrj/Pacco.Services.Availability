@@ -5,6 +5,6 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
     public class ResourceAlreadyExistException : AppException
     {
 
-        public ResourceAlreadyExistException(string message) : base(message) { }
+        public ResourceAlreadyExistException(Guid id) : base($"Resource with ID: '{id}' already exists.") { }
     }
 }
