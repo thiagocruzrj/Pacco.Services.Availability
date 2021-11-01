@@ -6,12 +6,12 @@ namespace Pacco.Services.Availability.Application.Commands
 {
     public class AddResource : ICommand
     {
-        public Guid Id { get; }
+        public Guid ResourceId { get; }
         public IEnumerable<string> Tags { get; }
-
-        public AddResource(Guid id, IEnumerable<string> tags)
+        
+        public AddResource(Guid resourceId, IEnumerable<string> tags)
         {
-            Id = id;
+            ResourceId = resourceId;
             Tags = tags;
         }
     }
