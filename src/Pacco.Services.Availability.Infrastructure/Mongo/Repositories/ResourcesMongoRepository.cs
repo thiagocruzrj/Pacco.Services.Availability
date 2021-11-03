@@ -17,10 +17,8 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Repositories
         public Task AddAsync(Resource resource) =>
             _repository.AddAsync(resource.AddDocument());
 
-        public Task DeleteAsync(AggregateId id)
-        {
-            throw new System.NotImplementedException();
-        }
+        public Task DeleteAsync(AggregateId id) =>
+            _repository.DeleteAsync(r => r.Id == id);
 
         public async Task<Resource> GetAsync(AggregateId id)
         {
@@ -28,9 +26,7 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Repositories
             return document?.AsEntity();
         }
 
-        public Task UpdateAsync(Resource resource)
-        {
-            throw new System.NotImplementedException();
-        }
+        public Task UpdateAsync(Resource resource) =>
+            _repository.UpdateAsync(resource.AddDocument());
     }
 }
