@@ -14,10 +14,8 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Repositories
         public ResourcesMongoRepository(IMongoRepository<ResourceDocument, Guid> repository) =>
             _repository = repository;
 
-        public Task AddAsync(Resource resource)
-        {
-            throw new System.NotImplementedException();
-        }
+        public Task AddAsync(Resource resource) =>
+            _repository.AddAsync(resource.AddDocument());
 
         public Task DeleteAsync(AggregateId id)
         {
