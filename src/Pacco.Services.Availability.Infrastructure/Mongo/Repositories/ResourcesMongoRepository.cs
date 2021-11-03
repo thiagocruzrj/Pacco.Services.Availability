@@ -18,7 +18,7 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Repositories
             _repository.AddAsync(resource.AddDocument());
 
         public Task DeleteAsync(AggregateId id) =>
-            _repository.DeleteAsync(r => r.Id == id);
+            _repository.DeleteAsync(id);
 
         public async Task<Resource> GetAsync(AggregateId id)
         {
