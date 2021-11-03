@@ -1,6 +1,5 @@
 using System;
 using Convey;
-using Convey.CQRS.Commands;
 using Convey.CQRS.Queries;
 using Convey.Persistence.MongoDB;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +18,7 @@ namespace Pacco.Services.Availability.Infrastructure
             
             builder
                 .AddQueryHandlers()
-                .AddInMemoryCommandDispatcher()
+                .AddInMemoryQueryDispatcher()
                 .AddMongo()
                 .AddMongoRepository<ResourceDocument, Guid>("resources");
 
