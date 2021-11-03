@@ -27,6 +27,6 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Repositories
         }
 
         public Task UpdateAsync(Resource resource) =>
-            _repository.UpdateAsync(resource.AddDocument());
+            _repository.UpdateAsync(resource.AddDocument(), r => r.Id == resource.Id && r.Version < resource.Version);
     }
 }
