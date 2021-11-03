@@ -7,5 +7,6 @@ namespace Pacco.Services.Availability.Application.DTO
     {
         public Guid Id { get; set; }
         public IEnumerable<string> Tags { get; set; }
+        public IEnumerable<ReservationDto> Reservations { get; set; }
     }
 }
