@@ -9,11 +9,11 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Repositories
 {
     internal sealed class ResourcesMongoRepository : IResourcesRepository
     {
-        public ResourcesMongoRepository(IMongoRepository<ResourceDocument, Guid> repo)
-        {
-            
-        }
-        
+        private readonly IMongoRepository<ResourceDocument, Guid> _repository;
+
+        public ResourcesMongoRepository(IMongoRepository<ResourceDocument, Guid> repository) =>
+            _repository = repository;
+
         public Task AddAsync(Resource resource)
         {
             throw new System.NotImplementedException();
@@ -24,9 +24,10 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<Resource> GetAsync(AggregateId id)
+        public async Task<Resource> GetAsync(AggregateId id)
         {
-            throw new System.NotImplementedException();
+            var document = await _repository.GetAsync(r => r.Id == id);
+            return document?.AsEntity();
         }
 
         public Task UpdateAsync(Resource resource)
