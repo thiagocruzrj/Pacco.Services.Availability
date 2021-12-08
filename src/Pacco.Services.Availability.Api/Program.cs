@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Hosting;
 using Convey;
 using Pacco.Services.Availability.Application;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
 using Pacco.Services.Availability.Infrastructure;
 using Convey.WebApi.CQRS;
 using Pacco.Services.Availability.Application.Queries;
 using Pacco.Services.Availability.Application.DTO;
 using System.Collections.Generic;
 using Pacco.Services.Availability.Application.Commands;
+using Convey.WebApi;
 
 namespace Pacco.Services.Availability.Api
 {
@@ -33,7 +33,6 @@ namespace Pacco.Services.Availability.Api
                     .UseDispatcherEndpoints(endpoints => endpoints
                         .Get<GetResources, IEnumerable<ResourceDto>>("resources")
                         .Get<GetResource, ResourceDto>("resourses/{resourceId}")
-                        .Post<AddResource>("resources"))
-                );
+                        .Post<AddResource>("resources", afterDispatch: (cmd, ctx) => ctx.Response.Created($"resources/{cmd.ResourceId}"))));
     }
 }
