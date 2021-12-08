@@ -6,6 +6,7 @@ using Pacco.Services.Availability.Application;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Pacco.Services.Availability.Infrastructure;
+using Convey.WebApi.CQRS;
 
 namespace Pacco.Services.Availability.Api
 {
@@ -18,20 +19,15 @@ namespace Pacco.Services.Availability.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
             => WebHost.CreateDefaultBuilder(args)
-                .ConfigureServices(services => 
-                {
-                    services.AddControllers().AddNewtonsoftJson();
-                    services
+                .ConfigureServices(services => services
                     .AddConvey()
                     .AddApplication()
                     .AddInfrastructure()
-                    .Build();
-                })
-                .Configure(app => 
-                {
-                    app.UseInfrastructure();
-                    app.UseRouting()
-                        .UseEndpoints(e => e.MapControllers());
-                });
+                    .Build())
+                .Configure(app => app
+                    .UseInfrastructure()
+                    .UseDispatcherEndpoints(endpoints => endpoints
+                        .Get("{resourceId}"))
+                );
     }
 }
