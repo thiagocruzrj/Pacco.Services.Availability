@@ -7,6 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Pacco.Services.Availability.Infrastructure;
 using Convey.WebApi.CQRS;
+using Pacco.Services.Availability.Application.Queries;
+using Pacco.Services.Availability.Application.DTO;
+using System.Collections.Generic;
+using Pacco.Services.Availability.Application.Commands;
 
 namespace Pacco.Services.Availability.Api
 {
@@ -27,7 +31,9 @@ namespace Pacco.Services.Availability.Api
                 .Configure(app => app
                     .UseInfrastructure()
                     .UseDispatcherEndpoints(endpoints => endpoints
-                        .Get("{resourceId}"))
+                        .Get<GetResources, IEnumerable<ResourceDto>>("resources")
+                        .Get<GetResource, ResourceDto>("resourses/{resourceId}")
+                        .Post<AddResource>("resources"))
                 );
     }
 }
