@@ -11,6 +11,7 @@ GET {{url}}/resources?tags={{tags}}&matchAllTags=false
 GET {{url}}/resources/{{resourceId}}
 
 ###
+
 POST {{url}}/resources
 Content-Type: application/json
 
