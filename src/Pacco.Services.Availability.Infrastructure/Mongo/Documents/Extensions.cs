@@ -10,7 +10,7 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Documents
     {
         public static Resource AsEntity(this ResourceDocument document) =>
             new Resource(document.Id, document.Tags, document.Reservations?
-                .Select(r => new Reservation(r.TimeStamp.AsDateTime(), r.Priority)));
+                .Select(r => new Reservation(r.TimeStamp.AsDateTime(), r.Priority)), document.Version);
 
         public static ResourceDocument AddDocument(this Resource entity) =>
             new ResourceDocument
