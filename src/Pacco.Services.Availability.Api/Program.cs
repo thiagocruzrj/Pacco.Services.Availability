@@ -33,6 +33,7 @@ namespace Pacco.Services.Availability.Api
                     .UseDispatcherEndpoints(endpoints => endpoints
                         .Get<GetResources, IEnumerable<ResourceDto>>("resources")
                         .Get<GetResource, ResourceDto>("resourses/{resourceId}")
+                        .Post<ReserveResource>("resources/{resourceId}/reservations/{dateTime}")
                         .Post<AddResource>("resources", afterDispatch: (cmd, ctx) => ctx.Response.Created($"resources/{cmd.ResourceId}"))));
     }
 }
