@@ -5,7 +5,7 @@ using Pacco.Services.Availability.Core.ValueObjects;
 
 namespace Pacco.Services.Availability.Application.Commands.Handlers
 {
-    public class ReserveResourceHandler : ICommandHandler<ReserverResoucer>
+    public class ReserveResourceHandler : ICommandHandler<ReserveResource>
     {
         private readonly IResourcesRepository _resourcesRepository;
         public ReserveResourceHandler(IResourcesRepository resourcesRepository)
@@ -13,7 +13,7 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
             _resourcesRepository = resourcesRepository;
         }
 
-        public async Task HandleAsync(ReserverResoucer command)
+        public async Task HandleAsync(ReserveResource command)
         {
             var resource = await _resourcesRepository.GetAsync(command.ResourceId);
 
@@ -24,7 +24,7 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
 
             var reservation = new Reservation(command.DateTime, command.Priority);
             resource.AddReservation(reservation);
-            
+
             await _resourcesRepository.UpdateAsync(resource);
         }
     }
