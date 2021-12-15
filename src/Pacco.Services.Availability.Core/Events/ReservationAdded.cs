@@ -5,14 +5,14 @@ namespace Pacco.Services.Availability.Core.Events
 {
     public class ReservationAdded : IDomainEvent
     {
-        public Resource Resource { get; }
-        public Reservation Reservation { get; set; }
-
         public ReservationAdded(Resource resource, Reservation reservation)
         {
             Resource = resource;
             Reservation = reservation;
 
         }
+        public Resource Resource { get; }
+        public Reservation Reservation { get; set; }
+
     }
 }

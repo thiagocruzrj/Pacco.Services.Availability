@@ -12,20 +12,6 @@ namespace Pacco.Services.Availability.Core.Events
         {
             Resource = resource;
             Reservation = reservation;
-
-        }
-    }
-
-        public class ReservationAdded : IDomainEvent
-    {
-        public Resource Resource { get; }
-        public Reservation Reservation { get; set; }
-
-        public ReservationAdded(Resource resource, Reservation reservation)
-        {
-            Resource = resource;
-            Reservation = reservation;
-
         }
     }
 }
